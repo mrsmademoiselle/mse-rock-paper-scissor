@@ -1,10 +1,11 @@
 
-import enums.Choice;
-import enums.Winner;
+import constants.Choice;
+import constants.Winner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
 
+// TODO: Test First
 public class WinnerTest {
 
     @Test

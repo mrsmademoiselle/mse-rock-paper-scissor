@@ -8,29 +8,29 @@ import org.junit.Test;
 public class WinnerTest {
 
     @Test
-    public void determineWinner_player1(){
-        Choice player_paper = Choice.PAPER;
-        Choice computer_rock = Choice.ROCK;
+    public void determineWinner_playerWins(){
+        Choice playerPaper = Choice.PAPER;
+        Choice computerRock = Choice.ROCK;
 
-        Winner winner = Winner.determineWinner(player_paper, computer_rock);
+        Winner winner = Winner.determineWinner(playerPaper, computerRock);
 
         Assertions.assertEquals(winner, Winner.PLAYER);
     }
     @Test
-    public void determineWinner_computer(){
-        Choice player_rock = Choice.SCISSOR;
-        Choice computer_paper = Choice.ROCK;
+    public void determineWinner_computerWins(){
+        Choice playerScissor = Choice.SCISSOR;
+        Choice computerPaper = Choice.ROCK;
 
-        Winner winner = Winner.determineWinner(player_rock, computer_paper);
+        Winner winner = Winner.determineWinner(playerScissor, computerPaper);
 
         Assertions.assertEquals(winner, Winner.COMPUTER);
     }
     @Test
     public void determineWinner_draw(){
-        Choice player_rock = Choice.ROCK;
-        Choice computer_rock = Choice.ROCK;
+        Choice playerRock = Choice.ROCK;
+        Choice computerRock = Choice.ROCK;
 
-        Winner winner = Winner.determineWinner(player_rock, computer_rock);
+        Winner winner = Winner.determineWinner(playerRock, computerRock);
 
         Assertions.assertEquals(winner, Winner.DRAW);
     }

@@ -2,26 +2,18 @@ package constants;
 
 import java.util.Optional;
 
-// TODO Separation of Concerns
-// TODO Single Responsibility Principle -> Ich kenne nur meine eigenen Werte und kann dir sagen, ob dein Wert einer davon ist
 public enum Choice {
-    // TODO Open Closed Principle: für Erweiterungen öffnen, für Veränderungen schließen
-    ROCK(Hierarchy.HIERARCHY_0),
-    PAPER(Hierarchy.HIERARCHY_1),
-    SCISSOR(Hierarchy.HIERARCHY_2);
+    ROCK(0),
+    PAPER(1),
+    SCISSOR(2);
 
-    // TODO Information Hiding Principle
-    private final int hierarchy; // each choice has a hierarchy that overrides another. For example: paper (1) overrides rock (0)
+    // each choice has a hierarchy that overrides another. For example: paper (1) overrides rock (0)
+    private final int hierarchy;
 
     Choice(final int hierarchy) {
         this.hierarchy = hierarchy;
     }
 
-    public int getHierarchy() {
-        return hierarchy;
-    }
-
-    // TODO Keep it simple, stupid -> User-Input ist eine Zahl von 1-3, die dem hierarchy Wert entspricht
     public static Optional<Choice> getChoiceForValue(String userChoice){
         Optional<Choice> result = Optional.empty();
         if (userChoice.matches("\\d")){
@@ -34,6 +26,10 @@ public enum Choice {
             }
         }
       return result;
+    }
+    
+    public int getHierarchy() {
+        return this.hierarchy;
     }
 
 }

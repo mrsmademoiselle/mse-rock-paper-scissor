@@ -5,43 +5,33 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
 
-// TODO: Test First
 public class WinnerTest {
 
     @Test
     public void determineWinner_player1(){
-        Choice player = Choice.PAPER;
-        Choice computer = Choice.ROCK;
+        Choice player_paper = Choice.PAPER;
+        Choice computer_rock = Choice.ROCK;
 
-        Winner result = Winner.determineWinner(player, computer);
+        Winner winner = Winner.determineWinner(player_paper, computer_rock);
 
-        Assertions.assertTrue(result.equals(Winner.PLAYER));
+        Assertions.assertEquals(winner, Winner.PLAYER);
     }
     @Test
     public void determineWinner_computer(){
-        Choice player = Choice.ROCK;
-        Choice computer = Choice.PAPER;
+        Choice player_rock = Choice.SCISSOR;
+        Choice computer_paper = Choice.ROCK;
 
-        Winner result = Winner.determineWinner(player, computer);
+        Winner winner = Winner.determineWinner(player_rock, computer_paper);
 
-        Assertions.assertTrue(result.equals(Winner.COMPUTER));
+        Assertions.assertEquals(winner, Winner.COMPUTER);
     }
     @Test
     public void determineWinner_draw(){
-        Choice player = Choice.ROCK;
-        Choice computer = Choice.ROCK;
+        Choice player_rock = Choice.ROCK;
+        Choice computer_rock = Choice.ROCK;
 
-        Winner result = Winner.determineWinner(player, computer);
+        Winner winner = Winner.determineWinner(player_rock, computer_rock);
 
-        Assertions.assertTrue(result.equals(Winner.DRAW));
-    }
-    @Test
-    public void determineWinner_scissor_vs_rock(){
-        Choice player = Choice.ROCK;
-        Choice computer = Choice.SCISSOR;
-
-        Winner result = Winner.determineWinner(player, computer);
-
-        Assertions.assertTrue(result.equals(Winner.PLAYER));
+        Assertions.assertEquals(winner, Winner.DRAW);
     }
 }

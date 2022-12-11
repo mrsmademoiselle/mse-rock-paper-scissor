@@ -12,15 +12,15 @@ public class GameService {
     public  void startGame(){
         System.out.println("Welcome to Rock Paper Scissor!");
 
-        boolean stopGames = false;
+        boolean shouldStopGame = false;
 
-        while (!stopGames){
+        while (!shouldStopGame){
             mainMenu();
-            stopGames = checkIfGameShouldContinue();
+            shouldStopGame = askIfUserWantsToStop();
         }
     }
 
-    private  void mainMenu(){
+    private void mainMenu(){
         System.out.println("-----\n");
         Choice computerChoice = makeComputerChoice();
         Choice userChoice = askUserChoice();
@@ -33,13 +33,13 @@ public class GameService {
         printGameResult(winner);
     }
 
-    private  void printGameResult(Winner winner){
+    private void printGameResult(Winner winner){
         if (winner.equals(Winner.DRAW)){
             System.out.println("It was a draw.");
         } else {
-            boolean playerWon = winner.equals(Winner.PLAYER);
-            System.out.println((playerWon ? "You" : "The computer")+" won.");
-            System.out.println(playerWon ? "Congratulations!" : "Better luck next time.");
+            boolean playerHasWon = winner.equals(Winner.PLAYER);
+            System.out.println("You have " + (playerHasWon ? "won." : "lost."));
+            System.out.println(playerHasWon ? "Congratulations!" : "Better luck next time.");
         }
     }
 
@@ -50,32 +50,33 @@ public class GameService {
 
         while (!isValidNumber){
             System.out.println("Please make a choice between these options:");
+            printAllPossibleChoices();
 
-            listAllPossibleChoices();
-
-            String userChoiceString = scanner.nextLine();
-            userChoice = Choice.getChoiceForValue(userChoiceString);
+            String userChoiceInput = scanner.nextLine();
+            userChoice = Choice.getChoiceForValue(userChoiceInput);
             isValidNumber = userChoice.isPresent();
         }
 
         return userChoice.get();
     }
 
-    private  void listAllPossibleChoices(){
+    private void printAllPossibleChoices(){
         for (int i = 1; i <= this.ALL_CHOICES.length; i++){
             System.out.println(i + " " +this.ALL_CHOICES[i-1].toString());
         }
-
     }
 
-    private  Choice makeComputerChoice() {
+    /**
+     * Generates a random int and chooses the item on that index from ALL_CHOICES
+     */
+    private Choice makeComputerChoice() {
         Random random = new Random();
-        int number = random.nextInt(3);
+        int number = random.nextInt(this.ALL_CHOICES.length);
 
         return this.ALL_CHOICES[number];
     }
 
-    private  boolean checkIfGameShouldContinue(){
+    private boolean askIfUserWantsToStop(){
         System.out.println("\nDo you want to play again? Y/N");
 
         Scanner scanner = new Scanner(System.in);

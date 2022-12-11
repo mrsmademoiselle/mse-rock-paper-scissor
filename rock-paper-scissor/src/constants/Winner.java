@@ -7,7 +7,7 @@ public enum Winner {
 
     private final int VALUE;
 
-    Winner( int value) {
+    Winner(int value) {
         this.VALUE = value;
     }
 
